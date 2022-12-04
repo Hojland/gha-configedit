@@ -11,7 +11,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Update version in deployment.yaml with release tag
+      - name: Update yaml
         uses: Hojland/gha-configedit@v0.0.4
         with:
           file: "test.yaml"

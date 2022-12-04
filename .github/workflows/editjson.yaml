@@ -1,17 +1,17 @@
-name: Edit yaml
+name: Edit json
 
 on:
   workflow_dispatch:
 
 jobs:
-  edit-yaml:
-    name: Edit Yaml
+  edit-json:
+    name: Edit json
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Update version in deployment.yaml with release tag
+      - name: Update json
         uses: Hojland/gha-configedit@v0.0.4
         with:
           file: "test.json"
