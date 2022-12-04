@@ -1,0 +1,22 @@
+name: Edit yaml
+
+on:
+  pull_request:
+    branches:
+      - main
+    types: [closed]
+
+jobs:
+  edit-yaml:
+    name: Edit Yaml
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Update version in deployment.yaml with release tag
+        uses: Hojland/gha-yamledit@v0.0.1
+        with:
+          file: "test.yaml"
+          key: "key1.key2"
+          value: "value2"

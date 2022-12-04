@@ -1,4 +1,4 @@
-# GitHub Action for editing YAML files
+# GitHub Action for querying pypi versions of package
 
 ![gha-yamledit](https://socialify.git.ci/hojland/gha-yamledit/image?description=1&font=KoHo&forks=1&issues=1&language=1&owner=1&pattern=Floating%20Cogs&pulls=1&stargazers=1&theme=Light)
 
@@ -11,7 +11,7 @@
 GitHub actions can be integrated in any repository. Create a new folder called `.github/workflows/<any-name>.yml`. Paste the following starter code:
 
 ```yml
-name: Push OCI image
+name: Edit yaml
 
 on:
   pull_request:
@@ -19,57 +19,21 @@ on:
       - main
     types: [closed]
 
-env:
-  APPLICATION_NAME: query-engine
-
 
 jobs:
-  setup-build-publish:
-    name: Setup, Build, Publish, and Deploy
+  edit-yaml:
+    name: Edit Yaml
     runs-on: ubuntu-latest
-    #    if: ${{ github.event.workflow_run.conclusion == 'success' }}
-    outputs:
-      release_tag: ${{ steps.fetch-latest-release.outputs.latest-release }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - id: fetch-latest-release
-        run: |
-          git fetch --tags
-          export LATEST_RELEASE_VERSION=$(git describe --tags $(git rev-list --tags --max-count=1))
-          echo "::set-output name=latest-release::$(echo $LATEST_RELEASE_VERSION)"
-          echo The latest release version is \"$LATEST_RELEASE_VERSION\".
-        shell: bash
-
-      # Setup gcloud CLI
-      - uses: google-github-actions/setup-gcloud@94337306dda8180d967a56932ceb4ddcf01edae7
-        with:
-          service_account_key: ${{ secrets.GKE_SA_KEY_SANDBOX }}
-          project_id: ${{ secrets.GKE_PROJECT_SANDBOX }}
-
-      # Configure docker to use the gcloud command-line tool as a credential helper
-      - run: |-
-          gcloud --quiet auth configure-docker
-
-      # Build the Docker image
-      - name: Build
-        run: |-
-          docker build \
-            --tag "$IMAGE:${{ steps.fetch-latest-release.outputs.latest-release }}" \
-            .
-
-      # Push the Docker image to Google Container Registry
-      - name: Publish
-        run: |-
-          docker push "$IMAGE:${{ steps.fetch-latest-release.outputs.latest-release }}"
-
       - name: Update version in deployment.yaml with release tag
         uses: Hojland/gha-yamledit@v0.0.1
         with:
-          file: "k8s/environments/sandbox/deployment.yaml"
-          key: "tool.poetry.version"
-          value: ${{ steps.fetch-latest-release.outputs.latest-release }}
+          file: "test.yaml"
+          key: "key1.key2"
+          value: "value2"
       steps:
       - uses: actions/checkout@v2
 
