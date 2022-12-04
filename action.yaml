@@ -1,0 +1,27 @@
+name: "Edit YAML files"
+description: "Edit a YAML file"
+branding:
+  icon: "edit"
+  color: "blue"
+
+inputs:
+  file:
+    description: "File input path"
+    required: true
+
+  key:
+    description: "Key to change"
+    required: true
+
+  value:
+    description: "Value to input"
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - run: python -m pip install ruamel.yaml==0.17.21
+      shell: bash
+    - run: python ${{ github.action_path }}/main.py ${{ inputs.file }} ${{ inputs.key }} ${{ inputs.value }}
+      shell: bash
+      id: run
