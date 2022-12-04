@@ -1,5 +1,5 @@
-name: "Edit YAML files"
-description: "Edit a YAML file"
+name: "Edit configuration files"
+description: "Edit yaml, toml or json files"
 branding:
   icon: "edit"
   color: "blue"

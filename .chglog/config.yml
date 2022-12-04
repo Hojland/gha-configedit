@@ -2,7 +2,7 @@ style: github
 template: CHANGELOG.tpl.md
 info:
   title: CHANGELOG
-  repository_url: https://github.com/hojland/gha-yamledit
+  repository_url: https://github.com/hojland/gha-configedit
 options:
   commits:
     filters:
