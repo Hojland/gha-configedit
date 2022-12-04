@@ -14,7 +14,7 @@ jobs:
       - name: Update version in deployment.yaml with release tag
         uses: Hojland/gha-configedit@v0.0.4
         with:
-          file: "test.yaml"
+          file: "test.json"
           key: "key1.key2"
           value: "value2"
 

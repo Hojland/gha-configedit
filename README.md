@@ -1,6 +1,6 @@
-# GitHub Action for querying pypi versions of package
+# GitHub Action for editing configurations in yaml, toml or json
 
-![gha-yamledit](https://socialify.git.ci/hojland/gha-yamledit/image?description=1&font=KoHo&forks=1&issues=1&language=1&owner=1&pattern=Floating%20Cogs&pulls=1&stargazers=1&theme=Light)
+![gha-configedit](https://socialify.git.ci/hojland/gha-configedit/image?description=1&font=KoHo&forks=1&issues=1&language=1&owner=1&pattern=Floating%20Cogs&pulls=1&stargazers=1&theme=Light)
 
 <p align="center">
 <img src="https://img.shields.io/badge/python%20-%2314354C.svg?&style=for-the-badge&logo=python&logoColor=white" align="center">
@@ -29,7 +29,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Update version in deployment.yaml with release tag
-        uses: Hojland/gha-yamledit@v0.0.3
+        uses: Hojland/gha-configedit@v0.0.4
         with:
           file: "test.yaml"
           key: "key1.key2"
@@ -45,10 +45,10 @@ The scripts and documentation in this project are released under the [MIT Licens
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/hojland/gha-yamledit/tags).
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/hojland/gha-configedit/tags).
 
 ## Authors
 
 - **Martin Højand Hansen** - _Initial work_ - [hojland](https://github.com/hojland)
 
-See also the list of [contributors](https://github.com/hojland/gha-yamledit/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/hojland/gha-configedit/contributors) who participated in this project.
